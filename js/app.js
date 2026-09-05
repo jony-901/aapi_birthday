@@ -1,5 +1,5 @@
 /**
- * Streamlined Application Controller (Strict Passcode Verification)
+ * Streamlined Application Controller (With Perfect Replay Journey Logic)
  */
 class BirthdayApp {
   constructor() {
@@ -84,12 +84,21 @@ class BirthdayApp {
   onEnterStage(index) {
     const stageId = this.stages[index];
 
+    if (stageId === "stage-gift") {
+      // Ensure box is fresh and ready to open
+      if (this.giftController) {
+        this.giftController.reset();
+      }
+    }
+
     if (stageId === "stage-cake") {
       if (!this.cakeController) {
         this.cakeController = new CakeController({
           containerId: "cake-stage",
           onCompleted: () => this.nextStage()
         });
+      } else {
+        this.cakeController.reset();
       }
       if (window.soundEngine) {
         window.soundEngine.playBackgroundMusic();
@@ -128,7 +137,7 @@ class BirthdayApp {
     }
   }
 
-  /* ---------------- STAGE 1: PIN (Strict 2004 Only) ---------------- */
+  /* ---------------- STAGE 1: PIN ---------------- */
   initPinStage() {
     const pinInput = document.getElementById("pin-input");
     const unlockBtn = document.getElementById("unlock-pin-btn");
@@ -138,7 +147,6 @@ class BirthdayApp {
       const entered = pinInput ? pinInput.value.trim() : "";
       const expected = (this.customizer && this.customizer.data && this.customizer.data.pinCode) ? this.customizer.data.pinCode : "2004";
 
-      // STRICT: Must strictly match 2004 / expected passcode
       if (entered !== "" && (entered === expected || entered === "2004")) {
         if (errorMsg) errorMsg.classList.add("hidden");
         if (window.soundEngine) window.soundEngine.playChime();
@@ -178,12 +186,14 @@ class BirthdayApp {
     }
   }
 
-  /* ---------------- STAGE 4: NOTE & FINALE ---------------- */
+  /* ---------------- STAGE 4: NOTE & REPLAY ---------------- */
   initNoteStage() {
     const replayBtn = document.getElementById("replay-journey-btn");
     if (replayBtn) {
       replayBtn.addEventListener("click", () => {
-        this.goToStage(1); // Go back to gift box
+        if (this.giftController) this.giftController.reset();
+        if (this.cakeController) this.cakeController.reset();
+        this.goToStage(1); // Go back to gift box stage fresh and ready!
       });
     }
   }

@@ -1,5 +1,5 @@
 /**
- * Cake and Candle Blowing Mechanics (English + Auto Progression)
+ * Cake and Candle Blowing Mechanics (With Full Replay Reset)
  */
 class CakeController {
   constructor(options = {}) {
@@ -9,6 +9,7 @@ class CakeController {
     this.onCompleted = options.onCompleted;
     this.micStream = null;
     this.micInterval = null;
+    this.autoNextTimeout = null;
     this.init();
   }
 
@@ -35,6 +36,7 @@ class CakeController {
 
     if (cakeNextBtn) {
       cakeNextBtn.addEventListener("click", () => {
+        if (this.autoNextTimeout) clearTimeout(this.autoNextTimeout);
         if (window.app) window.app.nextStage();
       });
     }
@@ -42,6 +44,42 @@ class CakeController {
     candles.forEach(candle => {
       candle.addEventListener("click", () => this.blowCandles());
     });
+  }
+
+  reset() {
+    this.candlesBlown = false;
+    this.cakeCut = false;
+    this.stopMic();
+    if (this.autoNextTimeout) {
+      clearTimeout(this.autoNextTimeout);
+      this.autoNextTimeout = null;
+    }
+
+    if (this.container) {
+      const flames = this.container.querySelectorAll(".flame");
+      flames.forEach(flame => flame.classList.remove("extinguished"));
+
+      const knife = document.getElementById("cake-knife");
+      if (knife) knife.classList.remove("cutting");
+
+      const slice = document.getElementById("cake-slice");
+      if (slice) slice.classList.remove("sliced");
+
+      const blowActions = document.getElementById("blow-actions");
+      if (blowActions) blowActions.classList.remove("hidden");
+
+      const wishBanner = document.getElementById("wish-banner");
+      if (wishBanner) wishBanner.classList.add("hidden");
+
+      const cutActions = document.getElementById("cut-actions");
+      if (cutActions) cutActions.classList.add("hidden");
+
+      const cutBtn = document.getElementById("cut-cake-btn");
+      if (cutBtn) cutBtn.classList.remove("hidden");
+
+      const cakeNextBtn = document.getElementById("cake-next-btn");
+      if (cakeNextBtn) cakeNextBtn.classList.add("hidden");
+    }
   }
 
   blowCandles() {
@@ -175,8 +213,7 @@ class CakeController {
         nextBtn.classList.add("animate-bounce-in");
       }
 
-      // Automatically transition to the Letter stage after a brief joyful delay!
-      setTimeout(() => {
+      this.autoNextTimeout = setTimeout(() => {
         if (window.app) {
           window.app.nextStage();
         }

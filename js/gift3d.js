@@ -1,5 +1,5 @@
 /**
- * Spectacular 3D Gift Box Opening & Confetti Explosion
+ * Spectacular 3D Gift Box Opening & Confetti Explosion (With Full Reset Support)
  */
 class GiftBoxController {
   constructor(elementId, onOpened) {
@@ -13,8 +13,7 @@ class GiftBoxController {
     if (!this.boxElement) return;
 
     this.boxElement.addEventListener("click", () => this.openBox());
-    this.boxElement.addEventListener("touchstart", (e) => {
-      // Immediate response on mobile
+    this.boxElement.addEventListener("touchstart", () => {
       this.openBox();
     }, { passive: true });
 
@@ -49,11 +48,30 @@ class GiftBoxController {
     }
   }
 
+  reset() {
+    this.isOpened = false;
+    if (this.boxElement) {
+      this.boxElement.classList.remove("opening", "opened");
+      const lid = this.boxElement.querySelector(".lid3d");
+      if (lid) {
+        lid.style.animation = "none";
+        lid.offsetHeight; // force reflow
+        lid.style.animation = "";
+        lid.style.transform = "";
+        lid.style.opacity = "";
+      }
+      const gift3d = this.boxElement.querySelector(".gift3d");
+      if (gift3d) {
+        gift3d.style.transform = "rotateX(-12deg) rotateY(25deg)";
+      }
+    }
+  }
+
   openBox() {
     if (this.isOpened) return;
     this.isOpened = true;
 
-    // Instant sound trigger & bgm start
+    // Sound & Music
     if (window.soundEngine) {
       window.soundEngine.init();
       window.soundEngine.playChime();
@@ -61,14 +79,11 @@ class GiftBoxController {
       window.soundEngine.playBackgroundMusic();
     }
 
-    // Instant visual trigger
     this.boxElement.classList.add("opening");
     this.boxElement.classList.add("opened");
 
-    // Launch spectacular golden confetti & emoji fountain
     this.spawnExplosionFountain();
 
-    // Fast, satisfying transition (950ms instead of 2.2s)
     setTimeout(() => {
       if (this.onOpened) {
         this.onOpened();
@@ -84,7 +99,6 @@ class GiftBoxController {
     const colors = ["#ffd700", "#ff4081", "#ff80ab", "#00f0ff", "#ffea00", "#c77dff", "#ffffff"];
     const icons = ["✨", "💖", "🎉", "⭐", "🎀", "🌸", "🎊", "💕", "🎂"];
 
-    // 1. Central Light Flash Orb
     const flash = document.createElement("div");
     flash.className = "gift-flash-orb";
     flash.style.left = `${centerX}px`;
@@ -92,7 +106,6 @@ class GiftBoxController {
     document.body.appendChild(flash);
     setTimeout(() => flash.remove(), 700);
 
-    // 2. 60+ Flying Confetti & Sparkles
     for (let i = 0; i < 55; i++) {
       const p = document.createElement("div");
       p.className = "unboxing-particle";
@@ -114,8 +127,7 @@ class GiftBoxController {
       p.style.left = `${centerX}px`;
       p.style.top = `${centerY}px`;
 
-      // Explosive upward fountain physics
-      const angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.4; // upward spread
+      const angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.4;
       const velocity = 140 + Math.random() * 220;
       const tx = Math.cos(angle) * velocity * (0.8 + Math.random() * 0.6);
       const ty = Math.sin(angle) * velocity - (60 + Math.random() * 80);
