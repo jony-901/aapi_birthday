@@ -163,6 +163,17 @@ html, body {
   box-shadow: 0 8px 25px rgba(255, 77, 136, 0.6);
 }
 
+.btn-pill.muted {
+  background: rgba(255, 70, 70, 0.2);
+  border-color: rgba(255, 100, 100, 0.5);
+  color: #ffb3b3;
+}
+
+.btn-pill.muted:hover {
+  background: rgba(255, 70, 70, 0.35);
+  border-color: #ff6b6b;
+}
+
 /* Progress Indicator Dots */
 .progress-container {
   position: fixed;

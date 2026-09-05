@@ -84,6 +84,11 @@ class BirthdayApp {
   onEnterStage(index) {
     const stageId = this.stages[index];
 
+    // Ensure music is active and playing across all stages
+    if (window.soundEngine && !window.soundEngine.isMuted && !window.soundEngine.bgmPlaying) {
+      window.soundEngine.playBackgroundMusic();
+    }
+
     if (stageId === "stage-gift") {
       // Ensure box is fresh and ready to open
       if (this.giftController) {
@@ -149,7 +154,11 @@ class BirthdayApp {
 
       if (entered !== "" && (entered === expected || entered === "2004")) {
         if (errorMsg) errorMsg.classList.add("hidden");
-        if (window.soundEngine) window.soundEngine.playChime();
+        if (window.soundEngine) {
+          window.soundEngine.init();
+          window.soundEngine.playChime();
+          window.soundEngine.playBackgroundMusic();
+        }
         this.nextStage();
       } else {
         if (errorMsg) {
