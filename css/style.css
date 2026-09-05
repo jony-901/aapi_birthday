@@ -166,7 +166,7 @@ html, body {
 /* Progress Indicator Dots */
 .progress-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -206,7 +206,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px 70px;
+  padding: 65px 16px 40px;
 }
 
 .stage-view {

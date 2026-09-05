@@ -1,5 +1,5 @@
 /**
- * Cake and Candle Blowing Mechanics (English)
+ * Cake and Candle Blowing Mechanics (English + Auto Progression)
  */
 class CakeController {
   constructor(options = {}) {
@@ -18,6 +18,7 @@ class CakeController {
     const blowBtn = document.getElementById("blow-candle-btn");
     const micBtn = document.getElementById("mic-blow-btn");
     const cutBtn = document.getElementById("cut-cake-btn");
+    const cakeNextBtn = document.getElementById("cake-next-btn");
     const candles = this.container.querySelectorAll(".candle");
 
     if (blowBtn) {
@@ -30,6 +31,12 @@ class CakeController {
 
     if (cutBtn) {
       cutBtn.addEventListener("click", () => this.cutCake());
+    }
+
+    if (cakeNextBtn) {
+      cakeNextBtn.addEventListener("click", () => {
+        if (window.app) window.app.nextStage();
+      });
     }
 
     candles.forEach(candle => {
@@ -71,7 +78,7 @@ class CakeController {
         cutActions.classList.remove("hidden");
         cutActions.classList.add("animate-fade-in");
       }
-    }, 1000);
+    }, 900);
 
     this.stopMic();
   }
@@ -167,7 +174,15 @@ class CakeController {
         nextBtn.classList.remove("hidden");
         nextBtn.classList.add("animate-bounce-in");
       }
-    }, 800);
+
+      // Automatically transition to the Letter stage after a brief joyful delay!
+      setTimeout(() => {
+        if (window.app) {
+          window.app.nextStage();
+        }
+      }, 1400);
+
+    }, 700);
   }
 }
 

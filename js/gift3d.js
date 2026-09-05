@@ -1,5 +1,5 @@
 /**
- * 3D Gift Box Animation Controller
+ * Spectacular 3D Gift Box Opening & Confetti Explosion
  */
 class GiftBoxController {
   constructor(elementId, onOpened) {
@@ -13,6 +13,11 @@ class GiftBoxController {
     if (!this.boxElement) return;
 
     this.boxElement.addEventListener("click", () => this.openBox());
+    this.boxElement.addEventListener("touchstart", (e) => {
+      // Immediate response on mobile
+      this.openBox();
+    }, { passive: true });
+
     this.boxElement.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         this.openBox();
@@ -26,11 +31,11 @@ class GiftBoxController {
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        const rotateY = (x / rect.width) * 20;
-        const rotateX = -(y / rect.height) * 20;
+        const rotateY = (x / rect.width) * 18;
+        const rotateX = -(y / rect.height) * 18;
         const gift3d = this.boxElement.querySelector(".gift3d");
         if (gift3d) {
-          gift3d.style.transform = `rotateX(${rotateX - 10}deg) rotateY(${rotateY + 20}deg)`;
+          gift3d.style.transform = `rotateX(${rotateX - 12}deg) rotateY(${rotateY + 25}deg)`;
         }
       });
 
@@ -48,73 +53,86 @@ class GiftBoxController {
     if (this.isOpened) return;
     this.isOpened = true;
 
+    // Instant sound trigger & bgm start
     if (window.soundEngine) {
       window.soundEngine.init();
       window.soundEngine.playChime();
+      window.soundEngine.playSparkle();
+      window.soundEngine.playBackgroundMusic();
     }
 
+    // Instant visual trigger
     this.boxElement.classList.add("opening");
+    this.boxElement.classList.add("opened");
 
-    setTimeout(() => {
-      this.boxElement.classList.add("opened");
-      this.spawnBoxParticles();
-      
-      if (window.soundEngine) {
-        window.soundEngine.playBackgroundMusic();
-      }
-    }, 600);
+    // Launch spectacular golden confetti & emoji fountain
+    this.spawnExplosionFountain();
 
+    // Fast, satisfying transition (950ms instead of 2.2s)
     setTimeout(() => {
       if (this.onOpened) {
         this.onOpened();
       }
-    }, 2200);
+    }, 950);
   }
 
-  spawnBoxParticles() {
+  spawnExplosionFountain() {
     const rect = this.boxElement.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 3;
+    const centerY = rect.top + rect.height / 2;
 
-    const colors = ["#ff4d88", "#ffb703", "#8338ec", "#3a86ff", "#fb5607", "#06d6a0", "#ffd166"];
-    const emojis = ["✨", "💖", "🎉", "⭐", "🎈", "🌸", "🍰"];
+    const colors = ["#ffd700", "#ff4081", "#ff80ab", "#00f0ff", "#ffea00", "#c77dff", "#ffffff"];
+    const icons = ["✨", "💖", "🎉", "⭐", "🎀", "🌸", "🎊", "💕", "🎂"];
 
-    for (let i = 0; i < 35; i++) {
-      const particle = document.createElement("div");
-      particle.className = "box-sparkle-particle";
-      
-      if (Math.random() > 0.5) {
-        particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        particle.style.fontSize = `${14 + Math.random() * 16}px`;
+    // 1. Central Light Flash Orb
+    const flash = document.createElement("div");
+    flash.className = "gift-flash-orb";
+    flash.style.left = `${centerX}px`;
+    flash.style.top = `${centerY}px`;
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 700);
+
+    // 2. 60+ Flying Confetti & Sparkles
+    for (let i = 0; i < 55; i++) {
+      const p = document.createElement("div");
+      p.className = "unboxing-particle";
+
+      const isIcon = Math.random() > 0.45;
+      if (isIcon) {
+        p.textContent = icons[Math.floor(Math.random() * icons.length)];
+        p.style.fontSize = `${16 + Math.random() * 20}px`;
       } else {
-        particle.style.width = `${6 + Math.random() * 8}px`;
-        particle.style.height = `${6 + Math.random() * 8}px`;
-        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+        const sizeW = 8 + Math.random() * 10;
+        const sizeH = 12 + Math.random() * 14;
+        p.style.width = `${sizeW}px`;
+        p.style.height = `${sizeH}px`;
+        p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        p.style.borderRadius = Math.random() > 0.6 ? "50%" : "3px";
+        p.style.boxShadow = `0 0 10px ${colors[Math.floor(Math.random() * colors.length)]}`;
       }
 
-      particle.style.position = "fixed";
-      particle.style.left = `${centerX}px`;
-      particle.style.top = `${centerY}px`;
-      particle.style.pointerEvents = "none";
-      particle.style.zIndex = "9999";
+      p.style.left = `${centerX}px`;
+      p.style.top = `${centerY}px`;
 
-      const angle = (Math.PI * 2 * i) / 35 + (Math.random() - 0.5) * 0.5;
-      const distance = 80 + Math.random() * 160;
-      const tx = Math.cos(angle) * distance;
-      const ty = Math.sin(angle) * distance - 80;
+      // Explosive upward fountain physics
+      const angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.4; // upward spread
+      const velocity = 140 + Math.random() * 220;
+      const tx = Math.cos(angle) * velocity * (0.8 + Math.random() * 0.6);
+      const ty = Math.sin(angle) * velocity - (60 + Math.random() * 80);
+      const rot = (Math.random() - 0.5) * 720;
+      const duration = 0.7 + Math.random() * 0.5;
 
-      particle.style.transition = "all 1.2s cubic-bezier(0.12, 0.8, 0.32, 1)";
-      document.body.appendChild(particle);
+      p.style.transition = `all ${duration}s cubic-bezier(0.12, 0.85, 0.32, 1)`;
+      document.body.appendChild(p);
 
       requestAnimationFrame(() => {
-        particle.style.transform = `translate(${tx}px, ${ty}px) scale(${Math.random() * 1.5 + 0.5}) rotate(${Math.random() * 360}deg)`;
-        particle.style.opacity = "0";
+        p.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${Math.random() * 1.4 + 0.6})`;
+        p.style.opacity = "0";
       });
 
       setTimeout(() => {
-        if (particle.parentNode) particle.parentNode.removeChild(particle);
-      }, 1300);
+        if (p.parentNode) p.parentNode.removeChild(p);
+      }, duration * 1000 + 100);
     }
   }
 }

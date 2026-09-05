@@ -1,13 +1,13 @@
 /* ===================================================
-   3D Animations, Realistic Cake, Gift Box & Physics
+   3D Animations, Realistic Cake, Pink Gift Box & Physics
    =================================================== */
 
-/* ---------------- 3D Gift Box ---------------- */
+/* ---------------- 3D Pink & Gold Luxury Gift Box ---------------- */
 .gift-container {
   position: relative;
-  width: 260px;
-  height: 260px;
-  margin: 30px auto;
+  width: 240px;
+  height: 240px;
+  margin: 15px auto;
   perspective: 900px;
   cursor: pointer;
 }
@@ -29,45 +29,45 @@
 
 .box3d {
   position: absolute;
-  width: 180px;
-  height: 160px;
-  top: 60px;
-  left: 40px;
+  width: 170px;
+  height: 150px;
+  top: 50px;
+  left: 35px;
   transform-style: preserve-3d;
 }
 
 .lid3d {
   position: absolute;
-  width: 196px;
-  height: 44px;
-  top: 40px;
-  left: 32px;
+  width: 184px;
+  height: 40px;
+  top: 32px;
+  left: 28px;
   transform-style: preserve-3d;
   transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 10;
 }
 
-/* Gift Box Faces */
+/* Vibrant Rose-Pink / Magenta Gift Box Faces */
 .g-face {
   position: absolute;
-  background-color: var(--box-color);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+  background-color: #ff4d88;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.35);
 }
 
-.gb-front  { width: 180px; height: 160px; transform: translateZ(90px); background: linear-gradient(145deg, #9d4edd, #5a189a); }
-.gb-back   { width: 180px; height: 160px; transform: rotateY(180deg) translateZ(90px); background: linear-gradient(145deg, #3c096c, #240046); }
-.gb-left   { width: 180px; height: 160px; transform: rotateY(-90deg) translateZ(90px); background: linear-gradient(145deg, #5a189a, #3c096c); }
-.gb-right  { width: 180px; height: 160px; transform: rotateY(90deg) translateZ(90px); background: linear-gradient(145deg, #7b2cbf, #5a189a); }
-.gb-top    { width: 180px; height: 180px; transform: rotateX(90deg) translateZ(90px); background: #7b2cbf; }
-.gb-bottom { width: 180px; height: 180px; transform: rotateX(-90deg) translateZ(70px); background: #10002b; }
+.gb-front  { width: 170px; height: 150px; transform: translateZ(85px); background: linear-gradient(145deg, #ff4d88 0%, #d81159 100%); }
+.gb-back   { width: 170px; height: 150px; transform: rotateY(180deg) translateZ(85px); background: linear-gradient(145deg, #a60840 0%, #670025 100%); }
+.gb-left   { width: 170px; height: 150px; transform: rotateY(-90deg) translateZ(85px); background: linear-gradient(145deg, #b00d46 0%, #7a002c 100%); }
+.gb-right  { width: 170px; height: 150px; transform: rotateY(90deg) translateZ(85px); background: linear-gradient(145deg, #ff3377 0%, #c40e4f 100%); }
+.gb-top    { width: 170px; height: 170px; transform: rotateX(90deg) translateZ(85px); background: #ff5c93; }
+.gb-bottom { width: 170px; height: 170px; transform: rotateX(-90deg) translateZ(65px); background: #330010; }
 
 /* Lid Faces */
-.gl-front  { width: 196px; height: 44px; transform: translateZ(98px); background: linear-gradient(145deg, #c77dff, #7b2cbf); }
-.gl-back   { width: 196px; height: 44px; transform: rotateY(180deg) translateZ(98px); background: linear-gradient(145deg, #5a189a, #3c096c); }
-.gl-left   { width: 196px; height: 44px; transform: rotateY(-90deg) translateZ(98px); background: linear-gradient(145deg, #7b2cbf, #5a189a); }
-.gl-right  { width: 196px; height: 44px; transform: rotateY(90deg) translateZ(98px); background: linear-gradient(145deg, #9d4edd, #7b2cbf); }
-.gl-top    { width: 196px; height: 196px; transform: rotateX(90deg) translateZ(22px); background: linear-gradient(145deg, #e0aaff, #9d4edd); }
+.gl-front  { width: 184px; height: 40px; transform: translateZ(92px); background: linear-gradient(145deg, #ff6b9d 0%, #e01e67 100%); }
+.gl-back   { width: 184px; height: 40px; transform: rotateY(180deg) translateZ(92px); background: linear-gradient(145deg, #b00d46 0%, #7a002c 100%); }
+.gl-left   { width: 184px; height: 40px; transform: rotateY(-90deg) translateZ(92px); background: linear-gradient(145deg, #c40e4f 0%, #8f0837 100%); }
+.gl-right  { width: 184px; height: 40px; transform: rotateY(90deg) translateZ(92px); background: linear-gradient(145deg, #ff4d88 0%, #d81159 100%); }
+.gl-top    { width: 184px; height: 184px; transform: rotateX(90deg) translateZ(20px); background: linear-gradient(145deg, #ff80ab 0%, #ff4081 100%); }
 
 /* Satin Gold Ribbons */
 .ribbon-v {
@@ -75,10 +75,10 @@
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 32px;
+  width: 28px;
   transform: translateX(-50%);
   background: linear-gradient(90deg, #d4af37, #fff275 50%, #aa820a 100%);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
 }
 
 .ribbon-h {
@@ -86,20 +86,20 @@
   left: 0;
   right: 0;
   top: 50%;
-  height: 32px;
+  height: 28px;
   transform: translateY(-50%);
   background: linear-gradient(180deg, #d4af37, #fff275 50%, #aa820a 100%);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
 }
 
 /* 3D Bow */
 .bow-wrapper {
   position: absolute;
-  top: -24px;
+  top: -20px;
   left: 50%;
-  transform: translateX(-50%) translateZ(24px);
-  width: 70px;
-  height: 50px;
+  transform: translateX(-50%) translateZ(20px);
+  width: 60px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,27 +107,27 @@
 
 .bow-loop-left, .bow-loop-right {
   position: absolute;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 50% 50% 10% 50%;
   background: radial-gradient(circle at 30% 30%, #fff275, #d4af37 60%, #946f00);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .bow-loop-left {
-  left: 4px;
+  left: 3px;
   transform: rotate(-35deg) skewX(-10deg);
 }
 
 .bow-loop-right {
-  right: 4px;
+  right: 3px;
   transform: scaleX(-1) rotate(-35deg) skewX(-10deg);
 }
 
 .bow-center {
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: radial-gradient(circle, #ffffff 10%, #ffd700 60%, #b8860b 100%);
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
@@ -144,7 +144,7 @@
   40%, 80% { transform: scale(1.08) rotate(-3deg); }
 }
 
-.gift-container.opened .lid3d {
+.gift-container.opened_old .lid3d {
   transform: translateY(-200px) rotateX(45deg) rotateY(-30deg) scale(0.9);
   opacity: 0;
 }
@@ -154,90 +154,90 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 30px;
+  width: 180px;
+  height: 25px;
   background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6) 0%, transparent 70%);
   filter: blur(8px);
 }
 
 /* ===================================================
-   🎂 100% REALISTIC 3D BAKERY BIRTHDAY CAKE
+   🎂 100% REALISTIC 3D BAKERY BIRTHDAY CAKE (COMPACT)
    =================================================== */
 .cake-scene-container {
   perspective: 1000px;
-  margin: 20px auto 10px;
+  margin: 0 auto;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   display: flex;
   justify-content: center;
 }
 
 .cake-wrapper {
   position: relative;
-  width: 320px;
-  height: 300px;
+  width: 270px;
+  height: 230px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   transform-style: preserve-3d;
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 15px 28px rgba(0, 0, 0, 0.65));
 }
 
 /* Realistic Cake Stand & Board */
 .cake-stand-base {
   position: absolute;
-  bottom: -15px;
-  width: 240px;
-  height: 30px;
+  bottom: -10px;
+  width: 200px;
+  height: 24px;
   background: radial-gradient(ellipse at 50% 30%, #f0f0f0, #c8c8c8 60%, #909090 100%);
   border-radius: 50%;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8), inset 0 2px 4px #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7), inset 0 2px 4px #ffffff;
   z-index: 1;
 }
 
 .cake-gold-board {
   position: absolute;
-  bottom: 5px;
-  width: 310px;
-  height: 24px;
+  bottom: 4px;
+  width: 260px;
+  height: 20px;
   background: radial-gradient(ellipse at 50% 20%, #fff6d2 0%, #ffd700 40%, #c59b27 75%, #8c6812 100%);
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.8);
-  border: 2px dashed rgba(255, 245, 180, 0.6);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  border: 1.5px dashed rgba(255, 245, 180, 0.6);
   z-index: 2;
 }
 
 /* Cake Tiers Base Geometry */
 .cake-tier {
   position: relative;
-  border-radius: 20px 20px 28px 28px;
+  border-radius: 16px 16px 22px 22px;
   transform-style: preserve-3d;
 }
 
 /* Bottom Tier: Decadent Strawberry Velvet with Chocolate Ganache */
 .tier-bottom {
-  width: 260px;
-  height: 88px;
+  width: 220px;
+  height: 72px;
   background: linear-gradient(180deg, #ff9ebb 0%, #ff5c8a 35%, #d9255d 80%, #9b0e3e 100%);
-  border-radius: 16px 16px 26px 26px;
+  border-radius: 14px 14px 20px 20px;
   box-shadow: 
-    inset 0 12px 18px rgba(255, 255, 255, 0.4),
-    inset 0 -10px 20px rgba(0, 0, 0, 0.4),
-    0 12px 25px rgba(0, 0, 0, 0.5);
-  margin-bottom: 8px;
+    inset 0 10px 14px rgba(255, 255, 255, 0.4),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.45);
+  margin-bottom: 6px;
   z-index: 3;
 }
 
 .tier-bottom .tier-top-surface {
   position: absolute;
-  top: -12px;
+  top: -10px;
   left: 0;
   right: 0;
-  height: 28px;
+  height: 24px;
   background: radial-gradient(ellipse at 50% 40%, #ffb3c6 0%, #ff7597 70%, #d9255d 100%);
   border-radius: 50%;
-  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.6);
 }
 
 /* Chocolate Ganache Drippings */
@@ -246,71 +246,71 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 24px;
+  height: 20px;
   background: linear-gradient(180deg, #4a1e05 0%, #301302 100%);
-  border-radius: 12px 12px 0 0;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 4px 8px rgba(0,0,0,0.4);
+  border-radius: 10px 10px 0 0;
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), 0 3px 6px rgba(0,0,0,0.4);
 }
 
 .drip {
   position: absolute;
   top: 100%;
   background: linear-gradient(180deg, #4a1e05, #2a0f01);
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5), inset 1px 0 2px rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), inset 1px 0 2px rgba(255, 255, 255, 0.3);
 }
 
-.d1 { left: 18px; width: 14px; height: 26px; }
-.d2 { left: 52px; width: 16px; height: 38px; border-radius: 0 0 12px 12px; }
-.d3 { left: 95px; width: 13px; height: 22px; }
-.d4 { left: 130px; width: 18px; height: 42px; border-radius: 0 0 14px 14px; }
-.d5 { left: 172px; width: 14px; height: 30px; }
-.d6 { left: 205px; width: 16px; height: 44px; border-radius: 0 0 12px 12px; }
-.d7 { left: 236px; width: 12px; height: 20px; }
+.d1 { left: 14px; width: 12px; height: 20px; }
+.d2 { left: 42px; width: 13px; height: 30px; border-radius: 0 0 10px 10px; }
+.d3 { left: 78px; width: 11px; height: 18px; }
+.d4 { left: 108px; width: 15px; height: 34px; border-radius: 0 0 10px 10px; }
+.d5 { left: 142px; width: 12px; height: 24px; }
+.d6 { left: 172px; width: 14px; height: 35px; border-radius: 0 0 10px 10px; }
+.d7 { left: 198px; width: 10px; height: 16px; }
 
 /* Pearls / Whipped Cream Bottom Border */
 .tier-pearls {
   position: absolute;
-  bottom: -4px;
+  bottom: -3px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-around;
-  padding: 0 6px;
+  padding: 0 4px;
   z-index: 5;
 }
 
 .pearl {
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fff2d6 50%, #e0c89a 100%);
   border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* Top Tier: Creamy Pastel Buttercream with White Vanilla Glaze */
+/* Top Tier: Creamy Pastel Buttercream */
 .tier-top {
-  width: 190px;
-  height: 76px;
+  width: 160px;
+  height: 64px;
   background: linear-gradient(180deg, #fff0f5 0%, #ffd6e0 40%, #ffadc2 85%, #e87a99 100%);
-  border-radius: 14px 14px 22px 22px;
+  border-radius: 12px 12px 18px 18px;
   box-shadow: 
-    inset 0 10px 16px rgba(255, 255, 255, 0.7),
-    inset 0 -8px 16px rgba(0, 0, 0, 0.25),
-    0 8px 20px rgba(0, 0, 0, 0.45);
-  margin-bottom: -10px;
+    inset 0 8px 14px rgba(255, 255, 255, 0.7),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.4);
+  margin-bottom: -8px;
   z-index: 4;
 }
 
 .tier-top .tier-top-surface {
   position: absolute;
-  top: -14px;
+  top: -12px;
   left: 0;
   right: 0;
-  height: 30px;
+  height: 25px;
   background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #ffe6ed 60%, #ffb6c1 100%);
   border-radius: 50%;
-  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.9), 0 3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9);
 }
 
 /* Vanilla Glaze Drips */
@@ -319,22 +319,21 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 18px;
+  height: 15px;
   background: linear-gradient(180deg, #ffffff 0%, #fff8fb 100%);
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 8px 8px 0 0;
 }
 
-.dt1 { left: 16px; width: 12px; height: 24px; background: #ffffff; }
-.dt2 { left: 50px; width: 14px; height: 32px; background: #ffffff; }
-.dt3 { left: 90px; width: 11px; height: 20px; background: #ffffff; }
-.dt4 { left: 124px; width: 15px; height: 36px; background: #ffffff; }
-.dt5 { left: 160px; width: 12px; height: 22px; background: #ffffff; }
+.dt1 { left: 14px; width: 10px; height: 18px; background: #ffffff; }
+.dt2 { left: 42px; width: 12px; height: 26px; background: #ffffff; }
+.dt3 { left: 76px; width: 9px; height: 16px; background: #ffffff; }
+.dt4 { left: 104px; width: 12px; height: 28px; background: #ffffff; }
+.dt5 { left: 136px; width: 10px; height: 18px; background: #ffffff; }
 
 /* Cream Rosettes */
 .cream-rosettes {
   position: absolute;
-  top: -10px;
+  top: -8px;
   left: 0;
   right: 0;
   display: flex;
@@ -344,17 +343,17 @@
 }
 
 .rosette {
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ffeaf0 55%, #f7b7ca 100%);
   border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 🍓 3D Toppings: Glossy Strawberries & Chocolate Shards */
+/* 🍓 3D Toppings */
 .toppings-row {
   position: absolute;
-  top: -8px;
+  top: -6px;
   left: 0;
   right: 0;
   height: 100%;
@@ -364,20 +363,20 @@
 
 .strawberry {
   position: absolute;
-  width: 26px;
-  height: 32px;
+  width: 22px;
+  height: 26px;
   background: radial-gradient(circle at 35% 30%, #ff4d6d 0%, #d90429 65%, #7a0014 100%);
   border-radius: 50% 50% 50% 50% / 35% 35% 65% 65%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
 }
 
 .strawberry::before {
   content: "";
   position: absolute;
-  top: 4px;
-  left: 6px;
-  width: 4px;
-  height: 6px;
+  top: 3px;
+  left: 5px;
+  width: 3px;
+  height: 5px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   transform: rotate(-25deg);
@@ -385,94 +384,86 @@
 
 .strawberry .leaves {
   position: absolute;
-  top: -6px;
+  top: -5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 18px;
-  height: 8px;
+  width: 14px;
+  height: 6px;
   background: #2b9348;
   clip-path: polygon(0% 100%, 25% 0%, 50% 100%, 75% 0%, 100% 100%);
 }
 
-.s1 { left: 24px; top: -6px; transform: rotate(-15deg); }
-.s2 { right: 24px; top: -6px; transform: rotate(18deg); }
-.s3 { left: 50%; top: -14px; transform: translateX(-50%) scale(0.9); }
+.s1 { left: 18px; top: -4px; transform: rotate(-15deg); }
+.s2 { right: 18px; top: -4px; transform: rotate(18deg); }
+.s3 { left: 50%; top: -10px; transform: translateX(-50%) scale(0.85); }
 
 .choco-shard {
   position: absolute;
-  width: 6px;
-  height: 24px;
+  width: 5px;
+  height: 20px;
   background: linear-gradient(135deg, #4a1e05, #1f0b01);
   border-radius: 2px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-.ch1 { left: 45px; top: -10px; transform: rotate(25deg); }
-.ch2 { right: 45px; top: -10px; transform: rotate(-28deg); }
+.ch1 { left: 36px; top: -8px; transform: rotate(25deg); }
+.ch2 { right: 36px; top: -8px; transform: rotate(-28deg); }
 
 /* 🕯️ Realistic Gold Spiral Candles & Organic Flame */
 .candles-row {
   position: absolute;
-  top: -46px;
+  top: -38px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 26px;
   z-index: 10;
 }
 
 .candle {
   position: relative;
-  width: 14px;
-  height: 52px;
+  width: 12px;
+  height: 44px;
   background: repeating-linear-gradient(
     45deg,
     #ffffff,
-    #ffffff 5px,
-    #ffd700 5px,
-    #ffd700 10px,
-    #e0aaff 10px,
-    #e0aaff 15px
+    #ffffff 4px,
+    #ffd700 4px,
+    #ffd700 8px,
+    #ff80ab 8px,
+    #ff80ab 12px
   );
-  border-radius: 5px 5px 3px 3px;
+  border-radius: 4px;
   box-shadow: 
-    0 4px 10px rgba(0, 0, 0, 0.4),
-    inset 1px 0 3px rgba(255, 255, 255, 0.8),
-    inset -1px 0 3px rgba(0, 0, 0, 0.3);
+    0 3px 8px rgba(0, 0, 0, 0.4),
+    inset 1px 0 2px rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.candle:hover {
-  transform: scale(1.08);
 }
 
 .candle-wick {
   position: absolute;
-  top: -7px;
+  top: -6px;
   left: 50%;
   transform: translateX(-50%);
-  width: 2.5px;
-  height: 8px;
+  width: 2px;
+  height: 6px;
   background: #2b2b2b;
   border-radius: 1px;
 }
 
-/* Organic Multi-Layer Flame with Radial Light Casting */
 .flame {
   position: absolute;
-  top: -28px;
+  top: -24px;
   left: 50%;
   transform: translateX(-50%);
-  width: 18px;
-  height: 30px;
+  width: 16px;
+  height: 26px;
   border-radius: 50% 50% 20% 20%;
   background: radial-gradient(ellipse at 50% 85%, #ffffff 0%, #ffea00 35%, #ff5400 70%, transparent 100%);
   box-shadow: 
-    0 0 15px #ffb703,
-    0 0 30px #fb8500,
-    0 0 45px #ff0054;
+    0 0 12px #ffb703,
+    0 0 25px #fb8500,
+    0 0 35px #ff0054;
   animation: organicFlameFlicker 0.18s ease-in-out infinite alternate;
   transform-origin: 50% 90%;
   transition: all 0.35s ease;
@@ -483,22 +474,16 @@
   bottom: 2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 6px;
-  height: 10px;
+  width: 5px;
+  height: 8px;
   background: radial-gradient(ellipse, #ffffff 30%, #00f0ff 100%);
   border-radius: 50%;
 }
 
 @keyframes organicFlameFlicker {
-  0% {
-    transform: translateX(-50%) rotate(-3deg) scale(1, 1);
-  }
-  50% {
-    transform: translateX(-50%) rotate(2deg) scale(1.08, 0.95);
-  }
-  100% {
-    transform: translateX(-50%) rotate(-1deg) scale(0.95, 1.05);
-  }
+  0% { transform: translateX(-50%) rotate(-3deg) scale(1, 1); }
+  50% { transform: translateX(-50%) rotate(2deg) scale(1.08, 0.95); }
+  100% { transform: translateX(-50%) rotate(-1deg) scale(0.95, 1.05); }
 }
 
 .flame.extinguished {
@@ -506,26 +491,18 @@
   transform: translateX(-50%) scale(0);
 }
 
-/* Ambient glow cast on top of cake */
 .candle-ambient-glow {
   position: absolute;
-  inset: -10px;
+  inset: -8px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 50%, rgba(255, 183, 3, 0.35), transparent 70%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 183, 3, 0.3), transparent 70%);
   pointer-events: none;
-  animation: ambientPulse 1s ease-in-out infinite alternate;
 }
 
-@keyframes ambientPulse {
-  0% { opacity: 0.7; }
-  100% { opacity: 1; }
-}
-
-/* Smoke puff on candle blow */
 .smoke-puff {
   position: fixed;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.2));
   border-radius: 50%;
   pointer-events: none;
@@ -539,13 +516,13 @@
   100% { transform: translateY(-70px) translateX(-10px) scale(4); opacity: 0; filter: blur(6px); }
 }
 
-/* 🔪 Realistic Chef Knife with Stainless Steel Blade */
+/* 🔪 Realistic Chef Knife */
 .chef-knife {
   position: absolute;
-  top: -80px;
-  right: -50px;
-  width: 160px;
-  height: 35px;
+  top: -70px;
+  right: -40px;
+  width: 140px;
+  height: 30px;
   display: flex;
   align-items: center;
   transform: rotate(-35deg);
@@ -556,36 +533,35 @@
 }
 
 .knife-blade {
-  width: 110px;
-  height: 22px;
+  width: 95px;
+  height: 18px;
   background: linear-gradient(180deg, #f8f9fa 0%, #dee2e6 50%, #adb5bd 100%);
   clip-path: polygon(0% 15%, 85% 0%, 100% 50%, 85% 100%, 0% 85%);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 2px #ffffff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
 }
 
 .knife-handle {
-  width: 50px;
-  height: 14px;
+  width: 45px;
+  height: 12px;
   background: linear-gradient(180deg, #582f0e, #331800);
   border-radius: 4px 0 0 4px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.6);
 }
 
 .chef-knife.cutting {
   opacity: 1;
-  transform: translate(-120px, 120px) rotate(10deg);
+  transform: translate(-100px, 100px) rotate(10deg);
 }
 
-/* 🍰 Realistic Cut Cake Slice with Interior Layers */
+/* 🍰 Sliced Cake Wedge */
 .cake-slice-wedge {
   position: absolute;
-  right: 20px;
+  right: 16px;
   bottom: 0px;
-  width: 55px;
-  height: 80px;
-  border-radius: 8px;
+  width: 48px;
+  height: 65px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
   transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 5;
 }
@@ -599,13 +575,7 @@
 
 .sponge-layer {
   flex: 2;
-  background: repeating-linear-gradient(
-    90deg,
-    #5c3018,
-    #5c3018 4px,
-    #4a2410 4px,
-    #4a2410 8px
-  );
+  background: repeating-linear-gradient(90deg, #5c3018, #5c3018 3px, #4a2410 3px, #4a2410 6px);
 }
 
 .cream-layer {
@@ -616,7 +586,7 @@
 }
 
 .cake-slice-wedge.sliced {
-  transform: translate(65px, 10px) rotate(14deg);
+  transform: translate(55px, 8px) rotate(14deg);
 }
 
 /* Animations Helpers */
@@ -646,4 +616,62 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+\n/* Opening / Unboxing Animation States */
+.gift-container.opening {
+  animation: giftPopBurst 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes giftPopBurst {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.15) rotate(-3deg); filter: brightness(1.3); }
+  60% { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(1.05); }
+}
+
+/* 3D Lid Pop & Spin into the sky */
+.gift-container.opened .lid3d {
+  animation: lidFlyOff 0.85s cubic-bezier(0.12, 0.8, 0.32, 1) forwards !important;
+}
+
+@keyframes lidFlyOff {
+  0% { 
+    transform: translateY(0) rotateX(0deg) rotateZ(0deg) scale(1); 
+    opacity: 1; 
+  }
+  40% { 
+    transform: translateY(-180px) rotateX(45deg) rotateZ(-30deg) scale(1.15); 
+    opacity: 0.95; 
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+  }
+  100% { 
+    transform: translateY(-360px) rotateX(85deg) rotateZ(-65deg) scale(0.6); 
+    opacity: 0; 
+  }
+}
+
+/* Central Golden Flash Burst Orb */
+.gift-flash-orb {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%) scale(0.2);
+  background: radial-gradient(circle, #ffffff 0%, #ffd700 45%, #ff4081 75%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  animation: flashBurst 0.65s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+}
+
+@keyframes flashBurst {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+  60% { transform: translate(-50%, -50%) scale(9); opacity: 0.85; filter: blur(4px); }
+  100% { transform: translate(-50%, -50%) scale(15); opacity: 0; filter: blur(10px); }
+}
+
+.unboxing-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  user-select: none;
 }

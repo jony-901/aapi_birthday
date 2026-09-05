@@ -9,7 +9,6 @@
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/customizer.css">
 </head>
 <body class="theme-lavender">
 
@@ -23,7 +22,6 @@
     <div class="brand-logo">✨ Birthday Surprise</div>
     <div class="header-actions">
       <button id="music-toggle-btn" class="btn-pill" aria-label="Toggle Music">🎵 Music: ON</button>
-      <button id="open-customizer-btn" class="btn-pill btn-glow" aria-label="Customize Surprise">⚙️ Customize</button>
     </div>
   </header>
 
@@ -33,7 +31,7 @@
   <!-- Main Journey Stage Wrapper -->
   <main class="main-wrapper">
 
-    <!-- ================= STAGE 1: PIN LOCK / MYSTERY ================= -->
+    <!-- ================= STAGE 1: PIN LOCK (STRICT 2004) ================= -->
     <section id="stage-pin" class="stage-view active">
       <div class="glass-panel animate-pop">
         <h1 class="page-title">A Special Surprise Awaits 🎁</h1>
@@ -46,11 +44,10 @@
         </div>
 
         <button id="unlock-pin-btn" class="btn-action-primary">🔓 Unlock Surprise</button>
-        <button id="skip-pin-btn" class="btn-action-secondary">Skip Passcode →</button>
       </div>
     </section>
 
-    <!-- ================= STAGE 2: 3D GIFT BOX UNBOXING ================= -->
+    <!-- ================= STAGE 2: 3D PINK GIFT BOX UNBOXING ================= -->
     <section id="stage-gift" class="stage-view hidden">
       <h1 class="page-title">Tap the Gift to Open ✨</h1>
       <p class="page-subtitle">Happy Birthday, <span class="bind-recipient">Bisma Aapi</span>! Tap the box to unwrap.</p>
@@ -227,90 +224,14 @@
           <div id="typewriter-letter-body" class="typewriter-letter-content"></div>
         </div>
 
-        <!-- Actions -->
-        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
-          <button id="replay-journey-btn" class="btn-pill">↺ Replay Journey</button>
-          <button onclick="document.getElementById('open-customizer-btn').click()" class="btn-pill btn-glow">⚙️ Customize Note</button>
+        <!-- Clean Action (Replay Only) -->
+        <div style="display:flex;justify-content:center;margin-top:16px;">
+          <button id="replay-journey-btn" class="btn-pill btn-glow">↺ Replay Journey</button>
         </div>
       </div>
     </section>
 
   </main>
-
-  <!-- ================= CUSTOMIZER MODAL ================= -->
-  <div id="customizer-modal" class="customizer-modal">
-    <div class="customizer-panel">
-      <div class="customizer-header">
-        <div class="customizer-title">⚙️ Customize Names & Wishes</div>
-        <button id="close-customizer-btn" class="close-btn" aria-label="Close">✕</button>
-      </div>
-
-      <div class="customizer-body">
-        <!-- 1. Basics -->
-        <div class="form-section">
-          <div class="section-label">👤 Names & Passcode</div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Birthday Person (Recipient Name)</label>
-              <input type="text" id="cust-recipient" class="form-control" placeholder="e.g. Bisma Aapi" />
-            </div>
-            <div class="form-group">
-              <label>Your Name (Sender Name)</label>
-              <input type="text" id="cust-sender" class="form-control" placeholder="e.g. Your Well-Wisher ❤️" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Passcode (PIN Code)</label>
-              <input type="text" id="cust-pin" class="form-control" placeholder="2004" maxlength="6" />
-            </div>
-            <div class="form-group">
-              <label>Passcode Hint</label>
-              <input type="text" id="cust-hint" class="form-control" placeholder="Passcode: 2004" />
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Themes -->
-        <div class="form-section">
-          <div class="section-label">🎨 Color Theme</div>
-          <div class="theme-picker">
-            <button class="theme-btn" data-theme="theme-rose"><span class="theme-swatch swatch-rose"></span> Rose Gold</button>
-            <button class="theme-btn" data-theme="theme-midnight"><span class="theme-swatch swatch-midnight"></span> Midnight Blue</button>
-            <button class="theme-btn active" data-theme="theme-lavender"><span class="theme-swatch swatch-lavender"></span> Lavender Love</button>
-            <button class="theme-btn" data-theme="theme-sunset"><span class="theme-swatch swatch-sunset"></span> Sunset Glow</button>
-          </div>
-        </div>
-
-        <!-- 3. Heartfelt Note Text -->
-        <div class="form-section">
-          <div class="section-label">💌 Birthday Note / Letter (Pre-written & ready)</div>
-          <textarea id="cust-letter" class="form-control" style="min-height:160px;" placeholder="Write your birthday message here..."></textarea>
-          <div style="font-size:12px;color:var(--text-muted);">Tip: Using {recipient} and {sender} inside the letter will automatically replace them with the respective names above.</div>
-        </div>
-
-        <!-- Shareable Link Output Box -->
-        <div id="share-result-container" class="share-result-box hidden">
-          <div style="font-size:14px;color:var(--accent-gold);font-weight:700;">🔗 Your Private Shareable Link:</div>
-          <div class="share-input-group">
-            <input type="text" id="share-link-input" class="form-control" readonly />
-            <button id="copy-link-btn" class="btn-pill btn-glow">📋 Copy Link</button>
-          </div>
-          <div style="font-size:12px;color:var(--text-muted);">Send this link via WhatsApp, Messenger, or Email! The recipient will see all your custom names and greetings automatically.</div>
-        </div>
-
-      </div>
-
-      <div class="customizer-footer">
-        <button id="reset-customizer-btn" class="btn-action-secondary" style="margin:0;">Reset Defaults</button>
-        <div style="display:flex;gap:10px;">
-          <button id="share-link-btn" class="btn-pill">🔗 Generate Link</button>
-          <button id="save-customizer-btn" class="btn-pill btn-glow">💾 Save & Preview</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
   <!-- JavaScript Modules -->
   <script src="js/audio.js"></script>

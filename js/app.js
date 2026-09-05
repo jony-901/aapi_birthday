@@ -1,5 +1,5 @@
 /**
- * Streamlined Application Controller (English)
+ * Streamlined Application Controller (Strict Passcode Verification)
  */
 class BirthdayApp {
   constructor() {
@@ -128,23 +128,24 @@ class BirthdayApp {
     }
   }
 
-  /* ---------------- STAGE 1: PIN ---------------- */
+  /* ---------------- STAGE 1: PIN (Strict 2004 Only) ---------------- */
   initPinStage() {
     const pinInput = document.getElementById("pin-input");
     const unlockBtn = document.getElementById("unlock-pin-btn");
-    const skipBtn = document.getElementById("skip-pin-btn");
     const errorMsg = document.getElementById("pin-error-msg");
 
     const checkPin = () => {
       const entered = pinInput ? pinInput.value.trim() : "";
-      const expected = this.customizer.data.pinCode || "2004";
+      const expected = (this.customizer && this.customizer.data && this.customizer.data.pinCode) ? this.customizer.data.pinCode : "2004";
 
-      if (entered === expected || entered === "2004" || entered === "") {
+      // STRICT: Must strictly match 2004 / expected passcode
+      if (entered !== "" && (entered === expected || entered === "2004")) {
+        if (errorMsg) errorMsg.classList.add("hidden");
         if (window.soundEngine) window.soundEngine.playChime();
         this.nextStage();
       } else {
         if (errorMsg) {
-          errorMsg.textContent = "Oops! Incorrect passcode. Please try again!";
+          errorMsg.textContent = "Oops! Incorrect passcode. Please enter 2004!";
           errorMsg.classList.remove("hidden");
         }
         if (pinInput) {
@@ -155,10 +156,6 @@ class BirthdayApp {
     };
 
     if (unlockBtn) unlockBtn.addEventListener("click", checkPin);
-    if (skipBtn) skipBtn.addEventListener("click", () => {
-      if (window.soundEngine) window.soundEngine.playChime();
-      this.nextStage();
-    });
     if (pinInput) {
       pinInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") checkPin();
