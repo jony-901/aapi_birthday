@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday Bisma Aapi! ✨ A Special Surprise</title>
+  <meta name="description" content="A beautiful, interactive 3D birthday surprise journey with music, candle blowing, cake cutting, and a heartfelt letter.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/customizer.css">
+</head>
+<body class="theme-lavender">
+
+  <!-- Background Ambience & Fireworks Canvas -->
+  <div class="cosmos-bg"></div>
+  <div class="stars-particle-layer"></div>
+  <canvas id="fireworks-canvas" style="position:fixed;inset:0;z-index:5;pointer-events:none;"></canvas>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-bar">
+    <div class="brand-logo">✨ Birthday Surprise</div>
+    <div class="header-actions">
+      <button id="music-toggle-btn" class="btn-pill" aria-label="Toggle Music">🎵 Music: ON</button>
+      <button id="open-customizer-btn" class="btn-pill btn-glow" aria-label="Customize Surprise">⚙️ Customize</button>
+    </div>
+  </header>
+
+  <!-- Progress Dots Indicator -->
+  <nav id="progress-dots" class="progress-container"></nav>
+
+  <!-- Main Journey Stage Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- ================= STAGE 1: PIN LOCK / MYSTERY ================= -->
+    <section id="stage-pin" class="stage-view active">
+      <div class="glass-panel animate-pop">
+        <h1 class="page-title">A Special Surprise Awaits 🎁</h1>
+        <p class="page-subtitle">A private digital gift crafted just for <span class="bind-recipient" style="color:var(--accent-gold);font-weight:700;">Bisma Aapi</span>. Enter the passcode to begin!</p>
+        
+        <div class="code-input-group">
+          <input type="text" id="pin-input" class="fancy-input" placeholder="••••" maxlength="6" autofocus autocomplete="off" />
+          <div id="pin-hint-text" class="hint-text">Passcode: 2004</div>
+          <div id="pin-error-msg" class="error-text hidden"></div>
+        </div>
+
+        <button id="unlock-pin-btn" class="btn-action-primary">🔓 Unlock Surprise</button>
+        <button id="skip-pin-btn" class="btn-action-secondary">Skip Passcode →</button>
+      </div>
+    </section>
+
+    <!-- ================= STAGE 2: 3D GIFT BOX UNBOXING ================= -->
+    <section id="stage-gift" class="stage-view hidden">
+      <h1 class="page-title">Tap the Gift to Open ✨</h1>
+      <p class="page-subtitle">Happy Birthday, <span class="bind-recipient">Bisma Aapi</span>! Tap the box to unwrap.</p>
+
+      <div class="gift-container" id="gift-box-btn" tabindex="0" role="button" aria-label="Open 3D Gift Box">
+        <div class="gift3d">
+          <div class="box3d">
+            <div class="g-face gb-front"><div class="ribbon-v"></div></div>
+            <div class="g-face gb-back"><div class="ribbon-v"></div></div>
+            <div class="g-face gb-left"><div class="ribbon-v"></div></div>
+            <div class="g-face gb-right"><div class="ribbon-v"></div></div>
+            <div class="g-face gb-top"><div class="ribbon-v"></div><div class="ribbon-h"></div></div>
+            <div class="g-face gb-bottom"></div>
+          </div>
+          <div class="lid3d">
+            <div class="g-face gl-front"><div class="ribbon-v"></div></div>
+            <div class="g-face gl-back"><div class="ribbon-v"></div></div>
+            <div class="g-face gl-left"><div class="ribbon-v"></div></div>
+            <div class="g-face gl-right"><div class="ribbon-v"></div></div>
+            <div class="g-face gl-top"><div class="ribbon-v"></div><div class="ribbon-h"></div></div>
+            <div class="bow-wrapper">
+              <div class="bow-loop-left"></div>
+              <div class="bow-loop-right"></div>
+              <div class="bow-center"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+
+      <p style="font-size:14px;color:var(--accent-gold);margin-top:20px;letter-spacing:1px;">🎁 CLICK OR TAP THE BOX TO OPEN 🎁</p>
+    </section>
+
+    <!-- ================= STAGE 3: 100% REALISTIC 3D CAKE & CANDLE BLOWING ================= -->
+    <section id="stage-cake" class="stage-view hidden">
+      <h1 class="page-title">Make a Wish! 🎂</h1>
+      <p class="page-subtitle">Blow out the candles and cut the celebratory cake!</p>
+
+      <div class="cake-scene-container">
+        <div class="cake-wrapper" id="cake-stage">
+          <!-- Stand & Gold Board -->
+          <div class="cake-stand-base"></div>
+          <div class="cake-gold-board"></div>
+
+          <!-- Realistic Chef Knife -->
+          <div class="chef-knife" id="cake-knife">
+            <div class="knife-handle"></div>
+            <div class="knife-blade"></div>
+          </div>
+
+          <!-- Bottom Tier: Decadent Strawberry Velvet with Chocolate Ganache -->
+          <div class="cake-tier tier-bottom">
+            <div class="tier-top-surface"></div>
+            <div class="ganache-drips">
+              <span class="drip d1"></span>
+              <span class="drip d2"></span>
+              <span class="drip d3"></span>
+              <span class="drip d4"></span>
+              <span class="drip d5"></span>
+              <span class="drip d6"></span>
+              <span class="drip d7"></span>
+            </div>
+            <div class="tier-pearls">
+              <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+              <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+              <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+            </div>
+            <!-- Slice with interior texture -->
+            <div class="cake-slice-wedge" id="cake-slice">
+              <div class="slice-inner-sponge">
+                <span class="sponge-layer"></span>
+                <span class="cream-layer"></span>
+                <span class="sponge-layer"></span>
+                <span class="cream-layer"></span>
+                <span class="sponge-layer"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Tier: Creamy Vanilla Buttercream with Strawberries & Candles -->
+          <div class="cake-tier tier-top">
+            <div class="tier-top-surface">
+              <div class="candle-ambient-glow"></div>
+              <!-- 🍓 3D Strawberries and Chocolate Toppings -->
+              <div class="toppings-row">
+                <div class="strawberry s1"><div class="leaves"></div></div>
+                <div class="strawberry s2"><div class="leaves"></div></div>
+                <div class="strawberry s3"><div class="leaves"></div></div>
+                <div class="choco-shard ch1"></div>
+                <div class="choco-shard ch2"></div>
+              </div>
+            </div>
+            <div class="cream-drips-top">
+              <span class="drip dt1"></span>
+              <span class="drip dt2"></span>
+              <span class="drip dt3"></span>
+              <span class="drip dt4"></span>
+              <span class="drip dt5"></span>
+            </div>
+            <div class="cream-rosettes">
+              <span class="rosette"></span><span class="rosette"></span><span class="rosette"></span>
+              <span class="rosette"></span><span class="rosette"></span><span class="rosette"></span>
+              <span class="rosette"></span>
+            </div>
+
+            <!-- Realistic Spiral Candles & Flame Cores -->
+            <div class="candles-row">
+              <div class="candle candle-1">
+                <div class="candle-wick"></div>
+                <div class="flame">
+                  <div class="flame-core"></div>
+                </div>
+              </div>
+              <div class="candle candle-2">
+                <div class="candle-wick"></div>
+                <div class="flame">
+                  <div class="flame-core"></div>
+                </div>
+              </div>
+              <div class="candle candle-3">
+                <div class="candle-wick"></div>
+                <div class="flame">
+                  <div class="flame-core"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blow and Cut Controls -->
+      <div id="blow-actions" style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;justify-content:center;">
+        <button id="blow-candle-btn" class="btn-action-primary">💨 Blow Candles</button>
+        <button id="mic-blow-btn" class="btn-pill">🎙️ Blow with Mic</button>
+      </div>
+
+      <div id="wish-banner" class="hidden" style="margin-top:20px;">
+        <h2 style="font-family:var(--font-cursive);font-size:30px;color:var(--accent-gold);">✨ Your Wish Has Been Sent to the Stars! ✨</h2>
+      </div>
+
+      <div id="cut-actions" class="hidden" style="margin-top:16px;">
+        <button id="cut-cake-btn" class="btn-action-primary">🍰 Cut the Cake!</button>
+        <button id="cake-next-btn" class="btn-action-primary hidden">Read Letter 💌 →</button>
+      </div>
+    </section>
+
+    <!-- ================= STAGE 4: LUXURY HEARTFELT NOTE & FINALE ================= -->
+    <section id="stage-note" class="stage-view hidden">
+      <div class="letter-card-luxury animate-bounce-in">
+        <!-- Gold Corner Accents -->
+        <div class="corner-flair flair-tl"></div>
+        <div class="corner-flair flair-tr"></div>
+        <div class="corner-flair flair-bl"></div>
+        <div class="corner-flair flair-br"></div>
+
+        <!-- Top Header Seal -->
+        <div class="letter-top-seal">
+          <span class="seal-line"></span>
+          <span class="seal-icon">✦ 💌 ✦</span>
+          <span class="seal-line"></span>
+        </div>
+
+        <div style="text-align:center;margin-bottom:12px;">
+          <h1 class="page-title" style="font-size: clamp(26px, 4.5vw, 38px);margin-bottom:4px;">
+            Happy Birthday, <span class="bind-recipient">Bisma Aapi</span>! 🎉
+          </h1>
+          <p style="font-size:13px;color:var(--accent-gold);letter-spacing:1px;font-weight:600;text-transform:uppercase;">
+            ✨ A Letter Just For You ✨
+          </p>
+        </div>
+
+        <!-- Compact, Elegant Letter Body -->
+        <div class="letter-text-box">
+          <div id="typewriter-letter-body" class="typewriter-letter-content"></div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
+          <button id="replay-journey-btn" class="btn-pill">↺ Replay Journey</button>
+          <button onclick="document.getElementById('open-customizer-btn').click()" class="btn-pill btn-glow">⚙️ Customize Note</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= CUSTOMIZER MODAL ================= -->
+  <div id="customizer-modal" class="customizer-modal">
+    <div class="customizer-panel">
+      <div class="customizer-header">
+        <div class="customizer-title">⚙️ Customize Names & Wishes</div>
+        <button id="close-customizer-btn" class="close-btn" aria-label="Close">✕</button>
+      </div>
+
+      <div class="customizer-body">
+        <!-- 1. Basics -->
+        <div class="form-section">
+          <div class="section-label">👤 Names & Passcode</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Birthday Person (Recipient Name)</label>
+              <input type="text" id="cust-recipient" class="form-control" placeholder="e.g. Bisma Aapi" />
+            </div>
+            <div class="form-group">
+              <label>Your Name (Sender Name)</label>
+              <input type="text" id="cust-sender" class="form-control" placeholder="e.g. Your Well-Wisher ❤️" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Passcode (PIN Code)</label>
+              <input type="text" id="cust-pin" class="form-control" placeholder="2004" maxlength="6" />
+            </div>
+            <div class="form-group">
+              <label>Passcode Hint</label>
+              <input type="text" id="cust-hint" class="form-control" placeholder="Passcode: 2004" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Themes -->
+        <div class="form-section">
+          <div class="section-label">🎨 Color Theme</div>
+          <div class="theme-picker">
+            <button class="theme-btn" data-theme="theme-rose"><span class="theme-swatch swatch-rose"></span> Rose Gold</button>
+            <button class="theme-btn" data-theme="theme-midnight"><span class="theme-swatch swatch-midnight"></span> Midnight Blue</button>
+            <button class="theme-btn active" data-theme="theme-lavender"><span class="theme-swatch swatch-lavender"></span> Lavender Love</button>
+            <button class="theme-btn" data-theme="theme-sunset"><span class="theme-swatch swatch-sunset"></span> Sunset Glow</button>
+          </div>
+        </div>
+
+        <!-- 3. Heartfelt Note Text -->
+        <div class="form-section">
+          <div class="section-label">💌 Birthday Note / Letter (Pre-written & ready)</div>
+          <textarea id="cust-letter" class="form-control" style="min-height:160px;" placeholder="Write your birthday message here..."></textarea>
+          <div style="font-size:12px;color:var(--text-muted);">Tip: Using {recipient} and {sender} inside the letter will automatically replace them with the respective names above.</div>
+        </div>
+
+        <!-- Shareable Link Output Box -->
+        <div id="share-result-container" class="share-result-box hidden">
+          <div style="font-size:14px;color:var(--accent-gold);font-weight:700;">🔗 Your Private Shareable Link:</div>
+          <div class="share-input-group">
+            <input type="text" id="share-link-input" class="form-control" readonly />
+            <button id="copy-link-btn" class="btn-pill btn-glow">📋 Copy Link</button>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);">Send this link via WhatsApp, Messenger, or Email! The recipient will see all your custom names and greetings automatically.</div>
+        </div>
+
+      </div>
+
+      <div class="customizer-footer">
+        <button id="reset-customizer-btn" class="btn-action-secondary" style="margin:0;">Reset Defaults</button>
+        <div style="display:flex;gap:10px;">
+          <button id="share-link-btn" class="btn-pill">🔗 Generate Link</button>
+          <button id="save-customizer-btn" class="btn-pill btn-glow">💾 Save & Preview</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/audio.js"></script>
+  <script src="js/gift3d.js"></script>
+  <script src="js/cake.js"></script>
+  <script src="js/fireworks.js"></script>
+  <script src="js/customizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

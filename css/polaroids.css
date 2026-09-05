@@ -1,0 +1,330 @@
+/* ===================================================
+   Polaroid Wall, Wax Sealed Letter & Scratch Coupons
+   =================================================== */
+
+/* ---------------- Polaroid Gallery ---------------- */
+.polaroids-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 850px;
+  margin: 30px auto;
+  perspective: 1000px;
+}
+
+.polaroid-card {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.polaroid-card:hover {
+  transform: scale(1.04) translateY(-8px) !important;
+  z-index: 10;
+}
+
+.polaroid-card.flipped .polaroid-inner {
+  transform: rotateY(180deg);
+}
+
+.polaroid-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.polaroid-front, .polaroid-back {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  padding: 14px 14px 20px;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.polaroid-back {
+  transform: rotateY(180deg);
+  background: #fffdf7;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.tape-strip {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 22px;
+  background: rgba(255, 230, 150, 0.7);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 2px dashed rgba(0, 0, 0, 0.1);
+  border-right: 2px dashed rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.polaroid-photo-frame {
+  width: 100%;
+  height: 190px;
+  background: #222;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.polaroid-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.polaroid-card:hover .polaroid-photo-frame img {
+  transform: scale(1.06);
+}
+
+.polaroid-caption {
+  font-family: var(--font-cursive);
+  color: #2b2b2b;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tap-flip-hint {
+  font-size: 11px;
+  color: #888;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.polaroid-note-content h3 {
+  font-family: var(--font-cursive);
+  color: #ff4d88;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.polaroid-note-content p {
+  font-family: var(--font-letter);
+  color: #333333;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.polaroid-heart {
+  font-size: 24px;
+  margin-top: 12px;
+}
+
+/* ---------------- Wax Sealed Letter ---------------- */
+.envelope-container {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  margin: 30px auto;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  background: linear-gradient(135deg, #f2ebd9, #ded4be);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: #d4c8ad;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.6s ease;
+  z-index: 3;
+}
+
+.envelope-wrapper.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff4d6d, #b5179e 80%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  z-index: 4;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wax-seal:hover {
+  transform: translateX(-50%) scale(1.15);
+}
+
+.envelope-wrapper.open .wax-seal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Unfolded Letter Paper */
+.letter-paper {
+  position: relative;
+  width: 100%;
+  background: #fffdf7;
+  background-image: 
+    linear-gradient(#f0ebe1 1px, transparent 1px),
+    linear-gradient(90deg, #f0ebe1 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 12px;
+  padding: 36px 30px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+  display: none;
+  text-align: left;
+  border-left: 5px solid #ff4d88;
+}
+
+.letter-paper.unfolded {
+  display: block;
+  animation: unfoldPaper 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes unfoldPaper {
+  0% { transform: scaleY(0.1) translateY(40px); opacity: 0; }
+  100% { transform: scaleY(1) translateY(0); opacity: 1; }
+}
+
+.letter-header {
+  font-family: var(--font-cursive);
+  font-size: 28px;
+  color: #ff4d88;
+  margin-bottom: 16px;
+}
+
+.typewriter-text {
+  font-family: var(--font-letter);
+  font-size: 22px;
+  color: #2b2b2b;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  min-height: 160px;
+}
+
+/* ---------------- Scratch Coupons ---------------- */
+.coupons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.coupon-card {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  backdrop-filter: blur(12px);
+  border: 2px dashed rgba(255, 209, 102, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.coupon-content {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.coupon-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent-gold);
+  margin-bottom: 6px;
+}
+
+.coupon-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.coupon-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  z-index: 2;
+  border-radius: 14px;
+}
+
+.coupon-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg) scale(0);
+  border: 3px solid #2ec4b6;
+  color: #2ec4b6;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.coupon-stamp.stamped {
+  opacity: 0.9;
+  transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+}
